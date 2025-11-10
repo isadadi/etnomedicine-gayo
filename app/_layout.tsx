@@ -1,44 +1,63 @@
 // app/_layout.tsx
+import LoginModalGlobal from "@/components/screen/login-required-modal";
 import "@/global.css";
-import { SessionProvider, useSession } from "@/stores/auth-store";
-import { SplashScreenController } from "@/utils/splash";
+import { useAppStartup } from "@/hooks/useAppStartUp";
+import { SessionProvider, useSession } from "@/stores/authStore";
+import { customTheme } from "@/theme/custom-theme";
+import { ExpoIconsPack } from "@/theme/icon-pack";
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-// export const unstable_settings = {
-//   initialRouteName: "(auth)",
-// };
+import { View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
+import CustomSplashScreen from "../components/splashscreen";
 
 export default function Layout() {
   return (
-    <>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <SessionProvider>
-          <SplashScreenController />
-          <StatusBar style="auto" />
-          <RootNavigator />
-        </SessionProvider>
-      </ApplicationProvider>
-    </>
+    <SessionProvider>
+      <InnerLayout />
+    </SessionProvider>
   );
 }
 
-// Create a new component that can access the SessionProvider context later.
+// ✅ Pindahkan logic startup ke sini
+function InnerLayout() {
+  const { showCustomSplash, onLayoutRootView } = useAppStartup();
+
+  if (showCustomSplash) return <CustomSplashScreen />;
+
+  return (
+    <View onLayout={onLayoutRootView} className="flex-1 bg-gray-100">
+      <GestureHandlerRootView>
+        <SafeAreaProvider>
+          <IconRegistry icons={ExpoIconsPack} />
+          <ApplicationProvider
+            {...eva}
+            theme={{ ...eva.light, ...customTheme }}
+          >
+            <StatusBar style="auto" />
+            <RootNavigator />
+            <LoginModalGlobal />
+          </ApplicationProvider>
+        </SafeAreaProvider>
+        <Toast />
+      </GestureHandlerRootView>
+    </View>
+  );
+}
+
 function RootNavigator() {
   const { session } = useSession();
 
   return (
-    <Stack>
-      <Stack.Protected guard={!!session}>
-        <Stack.Screen name="(app)" />
-      </Stack.Protected>
-
+    <Stack screenOptions={{ headerShown: false, animation: "fade" }}>
+      <Stack.Screen name="(app)" />
       <Stack.Protected guard={!session}>
-        <Stack.Screen name="login" />
+        <Stack.Screen name="(auth)" />
       </Stack.Protected>
     </Stack>
   );

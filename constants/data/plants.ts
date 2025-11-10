@@ -1,0 +1,81 @@
+import { Plant } from "@/interfaces/plant";
+
+export const PLANTS: Plant[] = [
+  {
+    id: "plant-1",
+    name: "Jahe Merah",
+    latin: "Zingiber officinale var. rubrum",
+    gayo: "Ewun",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-2",
+    name: "Serai",
+    latin: "Cymbopogon citratus",
+    gayo: "Tangkis",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-3",
+    name: "Kunyit",
+    latin: "Curcuma longa",
+    gayo: "Kumer",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-4",
+    name: "Temulawak",
+    latin: "Curcuma zanthorrhiza",
+    gayo: "Temulak",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-5",
+    name: "Kayu Manis",
+    latin: "Cinnamomum verum",
+    gayo: "Kul Kayu",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-6",
+    name: "Sambiloto",
+    latin: "Andrographis paniculata",
+    gayo: "Pahit Uten",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-7",
+    name: "Daun Sirih",
+    latin: "Piper betle",
+    gayo: "Daun Sure",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-8",
+    name: "Lengkuas",
+    latin: "Alpinia galanga",
+    gayo: "Puyang",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-9",
+    name: "Daun Pegagan",
+    latin: "Centella asiatica",
+    gayo: "Pegage",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-10",
+    name: "Kumis Kucing",
+    latin: "Orthosiphon aristatus",
+    gayo: "Kumis Mue",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+  {
+    id: "plant-11",
+    name: "Mengkudu",
+    latin: "Morinda citrifolia",
+    gayo: "Kudu",
+    image: "require('@/assets/images/placeholder.png')",
+  },
+];

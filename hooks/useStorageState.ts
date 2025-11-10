@@ -17,6 +17,9 @@ function useAsyncState<T>(
   ) as UseStateHook<T>;
 }
 
+/**
+ * Simpan item ke storage secara cross-platform
+ */
 export async function setStorageItemAsync(key: string, value: string | null) {
   if (Platform.OS === "web") {
     try {
@@ -37,28 +40,39 @@ export async function setStorageItemAsync(key: string, value: string | null) {
   }
 }
 
+/**
+ * Hook untuk menyimpan dan memuat data dari storage
+ * dengan state `[isLoading, value]`
+ */
 export function useStorageState(key: string): UseStateHook<string> {
-  // Public
-  const [state, setState] = useAsyncState<string>();
+  const [state, setState] = useAsyncState<string>([true, null]); // pastikan awalnya loading = true
 
-  // Get
+  // Ambil data dari storage saat pertama kali
   useEffect(() => {
-    if (Platform.OS === "web") {
+    const load = async () => {
       try {
-        if (typeof localStorage !== "undefined") {
-          setState(localStorage.getItem(key));
+        let value: string | null = null;
+
+        if (Platform.OS === "web") {
+          if (typeof localStorage !== "undefined") {
+            value = localStorage.getItem(key);
+          }
+        } else {
+          value = await SecureStore.getItemAsync(key);
         }
-      } catch (e) {
-        console.error("Local storage is unavailable:", e);
-      }
-    } else {
-      SecureStore.getItemAsync(key).then((value: string | null) => {
+
+        // Setelah selesai ambil data, ubah state (loading jadi false)
         setState(value);
-      });
-    }
+      } catch (e) {
+        console.error("Gagal memuat storage:", e);
+        setState(null);
+      }
+    };
+
+    load();
   }, [key]);
 
-  // Set
+  // Fungsi set
   const setValue = useCallback(
     (value: string | null) => {
       setState(value);

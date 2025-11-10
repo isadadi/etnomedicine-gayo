@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "herbal-medicine",
-    "slug": "herbal-medicine",
+    "name": "Etnomedicine Gayo",
+    "slug": "etnomedicine-gayo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.etnomedicine.gayo"
     },
     "android": {
       "adaptiveIcon": {
@@ -20,13 +21,19 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.isadadi.herbalmedicine"
+      "package": "com.etnomedicine.gayo"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png",
-      "build": { "babel": { "include": ["@ui-kitten/components"] } }
+      "build": {
+        "babel": {
+          "include": [
+            "@ui-kitten/components"
+          ]
+        }
+      }
     },
     "plugins": [
       "expo-router",
@@ -57,8 +64,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "b95a6737-b967-46fa-aaa1-9a0fb8569231"
+        "projectId": "4c7dbf0b-8ca6-4b22-96a5-427534f79856"
       }
-    }
+    },
+    "owner": "isadadi"
   }
 }
