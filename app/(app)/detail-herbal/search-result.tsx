@@ -59,7 +59,7 @@ export default function HasilPencarian() {
 
   const { data: herbs, isLoading: loadingHerbs } = useSWR(
     `searchHerbas-${JSON.stringify(params)}`,
-    () => getHerbsBySearchParams({ ...params, age: Number(params.age) })
+    () => getHerbsBySearchParams(params)
   );
 
   return (
@@ -81,8 +81,8 @@ export default function HasilPencarian() {
       <View className="px-4 py-3 bg-white border-b border-gray-100">
         <View className="flex-row flex-wrap gap-2">
           {params.disease ? (
-            <View className="bg-green-50 border border-green-200 px-3 py-1.5 rounded-full">
-              <Text className="text-green-700 text-sm font-medium">
+            <View className="bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full">
+              <Text className="text-gray-700 text-sm font-medium">
                 {params.disease}
               </Text>
             </View>
@@ -150,9 +150,20 @@ export default function HasilPencarian() {
                 >
                   {item.description}
                 </Text>
-                <Text className="text-green-600 text-xs font-medium">
-                  Lihat detail
-                </Text>
+                <View className="flex flex-wrap gap-1 flex-row">
+                  {item.diseases.map((dis) => (
+                    <View
+                      className={`${dis.name === params.disease ? "bg-green-50" : "bg-gray-50"} border ${dis.name === params.disease ? "border-green-200" : "border-gray-200"}  px-1 py-1 rounded-full w-fit`}
+                      key={dis.id}
+                    >
+                      <Text
+                        className={`${dis.name === params.disease ? "text-green-700" : "text-gray-700"}  text-xs`}
+                      >
+                        {dis.name}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
               </View>
             </TouchableOpacity>
           )

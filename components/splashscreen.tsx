@@ -59,7 +59,7 @@ export default function SplashScreenView() {
       >
         <Image
           source={require("@/assets/images/splash-icon.png")}
-          className="w-44 h-44 mb-5"
+          className="w-44 h-44"
           resizeMode="contain"
         />
         <Text className="text-2xl font-bold text-green-800">

@@ -30,11 +30,12 @@ export default function ParallaxHeader({
   const fallbackImage =
     fallbackImageUrl ?? require("@/assets/images/partial-react-logo.png");
 
+  console.log("image", imageUrl);
   return (
     <View style={{ height: HEIGHT, backgroundColor: "#e5e7eb" }}>
       <Animated.View style={{ transform: [{ translateY: imageTranslateY }] }}>
         <Image
-          source={error || !imageUrl ? fallbackImage : imageUrl}
+          source={error || !imageUrl ? fallbackImage : { uri: imageUrl }}
           onError={() => setError(true)}
           style={{ width, height: HEIGHT }}
           contentFit="cover"

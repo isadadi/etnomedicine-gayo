@@ -9,22 +9,25 @@ import { Animated, View } from "react-native";
 export default function HomeScreen() {
   const sections = [
     {
-      id: 1,
+      id: "all",
       title: "Favorit Banyak Orang",
       description: "Temukan tanaman herbal populer hari ini",
       fn: () => getHerbs(10),
+      paramsAll: "",
     },
     {
-      id: 2,
+      id: "Ringan",
       title: "Kamu Sakit Ringan?",
       description: "Obat herbal gayo untuk penyakit yang umum",
       fn: () => getHerbsBySearchParams({ diseaseType: "Ringan", limit: 10 }),
+      paramsAll: "diseaseType=Ringan",
     },
     {
-      id: 3,
+      id: "Berat",
       title: "Ramuan untuk Sakit Berat",
       description: "Obat untuk penyakit yang cukup serius",
       fn: () => getHerbsBySearchParams({ diseaseType: "Berat", limit: 10 }),
+      paramsAll: "diseaseType=Berat",
     },
   ];
 
@@ -50,6 +53,7 @@ export default function HomeScreen() {
             title={item.title}
             description={item.description}
             fn={item.fn}
+            paramsAll={item.paramsAll}
           />
         ))}
         <View style={{ height: 230 }} />

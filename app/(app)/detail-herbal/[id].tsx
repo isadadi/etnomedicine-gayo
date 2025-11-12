@@ -1,12 +1,12 @@
 import AnimatedAppBar from "@/components/animated-appbar";
 import FavoriteButton from "@/components/favourite-button";
 import ParallaxHeader from "@/components/parallax-header";
+import PlantItem from "@/components/screen/detail-herbal/plant-item";
 import { globalStyles } from "@/constants/styles";
 import { getHerbById } from "@/services/get-herbs";
 import { useSession } from "@/stores/authStore";
 import { useFavoriteStore } from "@/stores/use-favourite-storage";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { MotiView } from "moti";
 import React, { useRef } from "react";
@@ -168,27 +168,7 @@ export default function DetailHerbalScreen() {
                     key={plant.id}
                     className="flex-row items-center bg-green-50 p-3 rounded-xl mb-2"
                   >
-                    <Image
-                      source={plant.image}
-                      style={{
-                        width: 50,
-                        height: 50,
-                        borderRadius: 10,
-                        marginRight: 12,
-                      }}
-                      placeholder={require("@/assets/images/default/default-plant.png")}
-                    />
-                    <View>
-                      <Text className="font-semibold text-neutral-800">
-                        {plant.name}
-                      </Text>
-                      <Text className="text-neutral-600 italic text-sm">
-                        {plant.latin}
-                      </Text>
-                      <Text className="text-neutral-500 text-sm">
-                        ({plant.gayo})
-                      </Text>
-                    </View>
+                    <PlantItem key={plant.id} plant={plant} />
                   </View>
                 ))}
           </View>

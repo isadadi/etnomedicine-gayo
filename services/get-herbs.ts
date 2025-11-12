@@ -23,7 +23,7 @@ interface SearchParams {
   plant?: string;
   disease?: string;
   diseaseType?: string;
-  age?: number; // umur dalam tahun
+  age?: string; // umur dalam tahun
   limit?: number;
   gender?: string;
 }
@@ -70,7 +70,8 @@ export const getHerbsBySearchParams = async ({
   }
 
   // Filter berdasarkan usia & gender
-  if (typeof age === "number" || gender) {
+  if (age || gender) {
+    const numberAge = Number(age);
     filtered = filtered.filter((h) =>
       h.dosage.some((d) => {
         // Filter gender (jika diberikan)
@@ -83,12 +84,12 @@ export const getHerbsBySearchParams = async ({
         }
 
         // Filter range usia
-        if (typeof age === "number") {
+        if (typeof numberAge === "number") {
           const [min, max] = d.ageRange;
           const minAge = parseInt(min, 10);
           const maxAge = max === null ? Infinity : parseInt(max, 10);
 
-          if (!(age >= minAge && age <= maxAge)) {
+          if (!(numberAge >= minAge && numberAge <= maxAge)) {
             return false;
           }
         }

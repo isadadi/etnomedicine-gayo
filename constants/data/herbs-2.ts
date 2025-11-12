@@ -2,14 +2,15 @@ import { Herb } from "@/interfaces/herbs";
 
 export const HERBS: Herb[] = [
   {
-    id: "herb-2",
+    id: "herb-1",
     name: "Tawar Lasun Ilang (Ramuan Bawang Putih untuk Sakit Gigi)",
-    image: require("@/assets/images/partial-react-logo.png"),
+    image:
+      "https://media.istockphoto.com/id/185328758/id/foto/bubuk-bawang-putih.jpg?s=2048x2048&w=is&k=20&c=megBvwwKCWKLQJdLy0LW1KthSRlHjLiHRoKzXfGk1yU=",
     description:
       "Ramuan tradisional sederhana yang menggunakan bawang putih untuk meredakan sakit gigi. Ramuan ini dipercaya secara turun-temurun oleh masyarakat Gayo karena sifat antibakterinya yang dapat membantu mengurangi rasa nyeri dan membunuh kuman penyebab infeksi.",
     plants: [
       {
-        id: "plant-4",
+        id: "plant-1",
         name: "Bawang Putih",
         latin: "Allium sativum",
         gayo: "Lasun Ilang",
@@ -46,7 +47,7 @@ export const HERBS: Herb[] = [
     ],
   },
   {
-    id: "herb-3",
+    id: "herb-2",
     name: "Tawar Dedingin (Ramuan Daun Sedingin untuk Demam dan Pusing)",
     image: require("@/assets/images/partial-react-logo.png"),
     description:
@@ -171,79 +172,6 @@ export const HERBS: Herb[] = [
       "Geprek atau iris tipis kedua bahan tersebut.",
       "Rebus dengan 1 gelas air hingga tersisa sekitar ⅕ gelas.",
       "Saring air rebusan, lalu minum selagi hangat.",
-    ],
-  },
-  {
-    id: "herb-4b",
-    name: "Tawar Kumer-Singkam Anak (Ramuan Kunyit dan Batang Tingkem untuk Anak)",
-    image: require("@/assets/images/partial-react-logo.png"),
-    description:
-      "Ramuan ringan untuk anak-anak dari kunyit (kumer) dan batang tingkem (singkam/ingkam), digunakan untuk menurunkan demam, membantu pencernaan, dan menjaga daya tahan tubuh. Rebusannya memiliki rasa hangat lembut dan aroma khas rempah, aman diminum anak di atas usia 3 tahun.",
-    plants: [
-      {
-        id: "plant-3",
-        name: "Kunyit",
-        latin: "Curcuma longa",
-        gayo: "Kumer",
-        image: require("@/assets/images/react-logo.png"),
-      },
-      {
-        id: "plant-15",
-        name: "Batang Tingkem",
-        latin: "Cinnamomum javanicum Blume",
-        gayo: "Singkam / Ingkam",
-        image: require("@/assets/images/react-logo.png"),
-      },
-    ],
-    diseases: [
-      {
-        id: "disease-10",
-        type: "Ringan",
-        name: "Demam pada Anak",
-      },
-      {
-        id: "disease-11",
-        type: "Ringan",
-        name: "Gangguan Pencernaan Anak",
-      },
-      {
-        id: "disease-12",
-        type: "Ringan",
-        name: "Menurunnya Nafsu Makan",
-      },
-    ],
-    benefits: [
-      "Menurunkan panas tubuh anak secara alami",
-      "Membantu melancarkan pencernaan",
-      "Menambah nafsu makan",
-      "Meningkatkan daya tahan tubuh anak",
-    ],
-    ingredients: [
-      "½ ruas jari kunyit muda",
-      "½ ruas jari batang tingkem",
-      "1 gelas air bersih",
-    ],
-    dosage: [
-      {
-        gender: "anak-anak",
-        ageRange: ["3", "5"],
-        amount: "2 sendok makan",
-        frequency: "2× sehari setelah makan",
-      },
-      {
-        gender: "anak-anak",
-        ageRange: ["6", "12"],
-        amount: "¼ gelas",
-        frequency: "1× sehari setelah makan",
-      },
-    ],
-    method: [
-      "Cuci bersih kunyit dan batang tingkem.",
-      "Geprek atau iris tipis kedua bahan.",
-      "Rebus dengan 1 gelas air hingga tersisa kira-kira ½ gelas.",
-      "Saring air rebusan dan biarkan hangat.",
-      "Beri sedikit madu jika anak tidak suka rasa pahit.",
-      "Berikan sesuai takaran setelah makan.",
     ],
   },
   {

@@ -1,5 +1,6 @@
 import { Herb } from "@/interfaces/herbs";
 import { ApiResponse } from "@/interfaces/response-api";
+import { customTheme } from "@/theme/custom-theme";
 import formatNumberToK from "@/utils/number-to-k";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Text } from "@ui-kitten/components";
@@ -13,45 +14,55 @@ const CARD_WIDTH = 180;
 const CARD_SPACING = 16;
 
 type Props = {
+  key: string;
   title: string;
   description: string;
   fn(): Promise<ApiResponse<Herb[]>>;
+  paramsAll: string;
 };
 
 function HerbalCardSkeleton() {
   return (
-    <View style={styles.card}>
-      <MotiView
-        from={{ opacity: 0.4 }}
-        animate={{ opacity: 1 }}
-        transition={{ loop: true, type: "timing", duration: 800 }}
-        style={[styles.cardImage, { backgroundColor: "#e5e5e5" }]}
-      />
-      <View style={styles.cardTextContainer}>
+    <View style={{ marginVertical: 12, backgroundColor: "#fff" }}>
+      <View style={[styles.card]}>
         <MotiView
           from={{ opacity: 0.4 }}
           animate={{ opacity: 1 }}
           transition={{ loop: true, type: "timing", duration: 800 }}
-          className="h-4 bg-gray-300 rounded w-2/3 mb-2"
+          style={[styles.cardImage, { backgroundColor: "#e5e5e5" }]}
         />
-        <MotiView
-          from={{ opacity: 0.4 }}
-          animate={{ opacity: 1 }}
-          transition={{ loop: true, type: "timing", duration: 800 }}
-          className="h-3 bg-gray-300 rounded w-4/5 mb-1"
-        />
-        <MotiView
-          from={{ opacity: 0.4 }}
-          animate={{ opacity: 1 }}
-          transition={{ loop: true, type: "timing", duration: 800 }}
-          className="h-3 bg-gray-300 rounded w-3/5"
-        />
+        <View style={styles.cardTextContainer}>
+          <MotiView
+            from={{ opacity: 0.4 }}
+            animate={{ opacity: 1 }}
+            transition={{ loop: true, type: "timing", duration: 800 }}
+            className="h-4 bg-gray-300 rounded w-2/3 mb-2"
+          />
+          <MotiView
+            from={{ opacity: 0.4 }}
+            animate={{ opacity: 1 }}
+            transition={{ loop: true, type: "timing", duration: 800 }}
+            className="h-3 bg-gray-300 rounded w-4/5 mb-1"
+          />
+          <MotiView
+            from={{ opacity: 0.4 }}
+            animate={{ opacity: 1 }}
+            transition={{ loop: true, type: "timing", duration: 800 }}
+            className="h-3 bg-gray-300 rounded w-3/5"
+          />
+        </View>
       </View>
     </View>
   );
 }
 
-export default function CardSection({ title, description, fn }: Props) {
+export default function CardSection({
+  key,
+  title,
+  description,
+  fn,
+  paramsAll,
+}: Props) {
   const [data, setData] = useState<Herb[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -70,12 +81,27 @@ export default function CardSection({ title, description, fn }: Props) {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.headerContainer}>
-        <Text category="h6" style={styles.headerTitle}>
-          {title}
-        </Text>
-        <Text appearance="hint" category="s2">
-          {description}
-        </Text>
+        <View>
+          <Text category="h6" style={styles.headerTitle}>
+            {title}
+          </Text>
+          <Text appearance="hint" category="s2">
+            {description}
+          </Text>
+        </View>
+        <TouchableOpacity
+          className="rounded-full bg-color-primary-100 py-2 px-4"
+          onPress={() =>
+            router.push(`/detail-herbal/search-result?${paramsAll}`)
+          }
+        >
+          <Text
+            category="c2"
+            style={{ color: customTheme["color-primary-700"] }}
+          >
+            Lihat
+          </Text>
+        </TouchableOpacity>
       </View>
 
       {/* Section Popular */}
@@ -106,7 +132,12 @@ export default function CardSection({ title, description, fn }: Props) {
                     placeholder={require("@/assets/images/default/default-herb.png")}
                   />
                   <View style={styles.cardTextContainer}>
-                    <Text category="s1" style={styles.cardTitle}>
+                    <Text
+                      category="s1"
+                      style={styles.cardTitle}
+                      numberOfLines={2}
+                      ellipsizeMode="tail"
+                    >
                       {item.name}
                     </Text>
                     <Text
@@ -149,6 +180,9 @@ const styles = StyleSheet.create({
     // px-6 pt-10 (paddingHorizontal: 24, paddingTop: 40)
     // paddingHorizontal: 24,
     paddingTop: 32,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 10, // Mengganti marginTop di View bawahnya
   },
   headerTitle: {
